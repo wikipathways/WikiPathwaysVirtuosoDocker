@@ -1,0 +1,45 @@
+---
+
+
+kind: Template
+apiVersion: v1
+metadata:
+  name: wploader
+labels:
+  template: wploader
+
+parameters:
+
+- name: LOADER_REGISTRY
+  value: bigcatum
+- name: LOADER_IMAGE
+  value: wploader
+- name: LOADER_TARGET_CLAIM_NAME
+  value: wp-target-claim
+
+objects:
+
+- kind: Job
+  apiVersion: batch/v1
+  metadata:
+    name: wploader
+
+
+  spec:
+    template:
+      metadata:
+        name: wploader
+      spec:
+        containers:
+        - image: ${LOADER_REGISTRY}/${LOADER_IMAGE}
+          name: wploader
+          imagePullPolicy: Always
+          volumeMounts:
+          - name: wp-target
+            mountPath: /wpdata
+        volumes:
+        - name: wp-target
+          persistentVolumeClaim:
+            claimName: ${LOADER_TARGET_CLAIM_NAME}
+  
+        restartPolicy: Never
