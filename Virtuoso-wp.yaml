@@ -14,7 +14,7 @@ metadata:
     openshift.io/support-url: https://github.com/OpenRiskNet/home/issues
     iconClass: icon-openjdk
     description: >-
-      This is a temporary description text
+      This template consists of a base Virtuoso SPARQL endpoint, with configurations to allow loading with data from WikiPathways. WikiPathways is an online collaborative pathway database, of which the data is available as RDF. Having biological pathways in the semantic web allows rapid integration with data from other resources that contain information about elements present in pathways using SPARQL queries.  
     tags: Virtuoso, WikiPathways, SPARQL, RDF
 labels:
   template: virtuoso-wp
@@ -22,7 +22,8 @@ labels:
   
 # A message displayed on the deployment console on completion...
 message: >-
-  Temporary message
+  Virtuoso-WikiPathways has been deployed to your project.
+  To remove the deployment you can use the command-line and run "oc delete all --selector template=virtuoso-wikipathways" for the project you deployed to.
   
 parameters:
 
